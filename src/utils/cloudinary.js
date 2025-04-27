@@ -12,6 +12,7 @@ cloudinary.config({
       if(!localFilePath){
         return null;
       }
+      
       // Upload on cloudinary
       const response = await cloudinary.uploader.upload(localFilePath, {
         resource_type: "auto"
@@ -19,6 +20,17 @@ cloudinary.config({
       // has been uploaded successfully
       console.log("File uploaded successfully!!!")
       console.log(response.url);
+
+      // debugging
+      fs.unlink(localFilePath, (err) => {
+        if (err) {
+            console.error("Error deleting local file:", err);
+        } else {
+            console.log("Local file deleted successfully.");
+        }
+    });
+
+
       return response;
     } catch (error) {
       fs.unlinkSync(localFilePath); // remove the locally saved temporay file

@@ -12,14 +12,15 @@ app.use(cors({
 app.use(express.json({
     limit: "16kb"
 }))
+
 // To solve url issues:
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
+
 //public assets -- to sore in my server
 app.use(express.static("public"))
+
 // to perform crud option on users cookies
 app.use(cookieParser())
-
-
 
 // routes import
 
